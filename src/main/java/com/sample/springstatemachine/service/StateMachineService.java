@@ -19,18 +19,19 @@ public class StateMachineService {
     public void startState(Events event) {
         this.stateMachine.start();
 
-        // Allows sending custom information to State Machine in Headers
         Message<Events> message = MessageBuilder
                 .withPayload(event)
                 .build();
         this.stateMachine.sendEvent(message);
+
+        System.out.println("----> Test: "+this.stateMachine.getExtendedState().getVariables().get("customType"));
 
         Message<Events> message2 = MessageBuilder
                 .withPayload(Events.IDENTIFY_TEMPLATE_FOLDER)
                 .setHeader("customMessage", "This is a custom Message")
                 .build();
         this.stateMachine.sendEvent(message2);
-        
+
         this.stateMachine.stop();
     }
 }

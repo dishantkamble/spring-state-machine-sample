@@ -21,5 +21,6 @@ public class PostCommentAction implements Action<States, Events> {
         // String comment = context.getMessageHeader("comment").toString();
         // String workFlowId = context.getMessageHeader("workFlowId").toString();
         this.testService.printComment(context.getSource().getId(), context.getEvent(), context.getTarget().getId());
+        context.getExtendedState().getVariables().put("customType", "customValue");
     }
 }

@@ -19,5 +19,6 @@ public class DoSomethingAction implements Action<States, Events> {
     @Override
     public void execute(StateContext<States, Events> context) {
         this.testService.doSomething(context.getMessageHeader("customMessage").toString());
+        System.out.println("--> Retrieve CustomType: "+context.getExtendedState().getVariables().get("customType"));
     }
 }
